@@ -118,10 +118,10 @@
         color: var(--color-white);
     }
     .nav-toggle{
-        width: 100dvw;
-        height: 100dvh;
+        width: 100%;
+        height: 100%;
 
-        position: absolute;
+        position: fixed;
         top: 0;
 
         display: flex;
