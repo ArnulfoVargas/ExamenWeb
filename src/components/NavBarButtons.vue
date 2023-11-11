@@ -31,6 +31,8 @@
         align-items: center;
         padding: 0 2.5rem;
         color: var(--color-white);
+
+        transition: background-color .25s linear;
     }
 
     @media (min-width: 768px) {
@@ -55,13 +57,18 @@
     }
 
     .route:hover{
-        background-color: #9f0c0c;
+        background-color: var(--color-red);
     }
-
+    
     .route p{
         font-size: 1.5rem;
         color: var(--color-white);
         font-family: var(--titles-font);
         font-weight: bold;
+        transition: text-shadow .15s linear;
+    }
+
+    .route:hover p{
+        text-shadow: var(--text-shadow);
     }
 </style>

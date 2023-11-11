@@ -1,10 +1,12 @@
 <script setup>
-    import {ref} from 'vue'
+    import { ref } from 'vue'
 
     import uniqid from "uniqid"
 
     import NavBarButtons from './NavBarButtons.vue';
+    import NavBarIcon from './NavBarIcon.vue';
 
+    let isRecentlyMounted = true;
     const isOpen = ref(false);
 
     const routes = [
@@ -21,26 +23,27 @@
     const toggleHamburguer = () => {
         isOpen.value = !isOpen.value;
         setOverflow(isOpen.value);
+        isRecentlyMounted = false;
     }
 
     const hideHamburguer = () => {
         isOpen.value = false;
         setOverflow(false);
+        isRecentlyMounted = false;
     }
 
     window.addEventListener('resize', () => {
         isOpen.value = false;
         setOverflow(false);
     })
+
 </script>
 
 <template>
     <div class="nav-bar">
-        <div class="company">
-            <p>{{ isOpen }}</p>
-        </div>
+        <NavBarIcon/>
+        
         <div class="routes">
-
             <NavBarButtons 
             v-for="route in routes"
             :key="uniqid()"
@@ -57,6 +60,7 @@
 
         <div 
             class="nav-toggle"
+            v-show="!isRecentlyMounted"
             :class="isOpen ? 'toggle-show' : 'toggle-hide'"
             >
             <NavBarButtons 
@@ -81,21 +85,6 @@
         z-index: 1;
     }
 
-    .company{
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100px;
-        z-index: 1;
-    }
-
-    .company p{
-        margin: 0;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        font-size: 2rem;
-        color: var(--text-white);
-    }
     .routes{
         display: none;
         z-index: 1;
@@ -133,14 +122,51 @@
     }
 
     .toggle-hide{
-        left: -100dvw;
-        pointer-events: none;
+        animation-name: hide;
+        animation-duration: .25s;
+        animation-fill-mode: forwards;
     }
 
     .toggle-show{
-        left: 0;
-        pointer-events: all;
+        animation-name: show;
+        animation-duration: .25s;
+        animation-fill-mode: forwards;
+    }
 
+    @keyframes show {
+        from{
+            left: -100dvw;
+            pointer-events: none;
+        }
+        to{
+            left: 0;
+            pointer-events: all;
+        }
+    }
+    @keyframes hide {
+        from{
+            left: 0;
+            pointer-events: none;
+        }
+        to{
+            left: -100dvw;
+            display: none;
+        }
+    }
+
+    .toggle-show *{
+        animation-name: showChild;
+        animation-duration: 1.25s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes showChild {
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
     }
 
     @media (min-width: 768px){

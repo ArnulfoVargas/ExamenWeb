@@ -19,8 +19,12 @@ import AppFooter from './components/AppFooter.vue'
     --color-dark-gray: rgb(35, 30, 30);
     --color-white: #ffffff;
     --color-red: rgb(185 28 28);
+    
+    --color-light-red: rgb(220, 38, 38);
 
+    --text-shadow: 4px -4px rgb(57, 52, 52);
     --box-shadow: 4px 4px rgb(57, 52, 52);
+    --thin-border: solid 2px rgb(57, 52, 52);
 
     --main-font: 'Fragment Mono', monospace;
     --titles-font: 'Geologica', sans-serif;
@@ -42,6 +46,7 @@ import AppFooter from './components/AppFooter.vue'
 
   *{
     user-select: none;
+    font-family: var(--main-font);
   }
 
   .toggled{
