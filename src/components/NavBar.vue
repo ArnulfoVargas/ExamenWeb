@@ -8,7 +8,7 @@
     const isOpen = ref(false);
 
     const routes = [
-        {to: "/home", text:"Home"},
+        {to: "/", text:"Home"},
         {to: "/about", text:"About"},
         {to: "/pokeapi", text:"PokeAPI"},
         {to: "/contact", text: "Contact"}
@@ -140,7 +140,7 @@
     .toggle-show{
         left: 0;
         pointer-events: all;
-        
+
     }
 
     @media (min-width: 768px){
