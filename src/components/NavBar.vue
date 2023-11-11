@@ -5,8 +5,6 @@
 
     import NavBarButtons from './NavBarButtons.vue';
 
-    console.log("LOL")
-
     const isOpen = ref(false);
 
     const routes = [
@@ -17,12 +15,10 @@
     ]
 
     const setOverflow = (overflow) => {
-        console.log("ov")
         document.body.className = `${overflow ? 'toggled' : ''}`;
     }
 
     const toggleHamburguer = () => {
-        console.log("tog")
         isOpen.value = !isOpen.value;
         setOverflow(isOpen.value);
     }
@@ -34,7 +30,7 @@
 
     window.addEventListener('resize', () => {
         isOpen.value = false;
-        setOverflow(true);
+        setOverflow(false);
     })
 </script>
 
