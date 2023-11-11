@@ -37,7 +37,7 @@
 <template>
     <div class="nav-bar">
         <div class="company">
-            <p>Hola</p>
+            <p>intento</p>
         </div>
         <div class="routes">
 
