@@ -37,7 +37,7 @@
 <template>
     <div class="nav-bar">
         <div class="company">
-            <p>intento</p>
+            <p>{{ isOpen }}</p>
         </div>
         <div class="routes">
 
