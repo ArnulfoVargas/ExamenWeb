@@ -18,7 +18,7 @@
         line-height: 1.75rem;
         text-align: center;
     }
-    @media (min-width: 768px){
+    @media (min-width: 1024px){
         div{
             width: 50%;
         }
