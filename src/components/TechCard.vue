@@ -22,6 +22,7 @@
         gap: 1.75rem;
         justify-content: center;
         grid-template-rows: 4.83rem 2.41rem;
+        margin-bottom: 1.5rem;
     }
     p{
         text-align: center;

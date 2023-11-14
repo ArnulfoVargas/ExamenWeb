@@ -1,8 +1,13 @@
 <script setup>
+  import uniqid from 'uniqid'
+
   import CatoonTitle from '../components/CatoonTitle.vue';
   import CartoonSubtitle from '../components/CartoonSubtitle.vue';
   import HalfScreenBody from '../components/HalfScreenBody.vue';
   import TechCard from '../components/TechCard.vue';
+  import CustomHR from '../components/CustomHR.vue';
+
+  import { Languages, Tecnologies} from "../data/data"
 </script>
 
 <template>
@@ -22,13 +27,29 @@
     </HalfScreenBody>
 
     <div class="container">
-      <TechCard 
-        :tech="'/Languages/js.png'" 
-        >Java Script</TechCard>
-      <TechCard 
-        :tech="'/Tech/flutter.png'"
-        >Flutter</TechCard>
+      <TechCard
+        v-for="(lang) in Languages" :key="uniqid()" 
+        :tech="lang.image"
+        >{{ lang.name }}</TechCard>
     </div>
+    
+    <CustomHR/>
+
+    <CartoonSubtitle>Technologies</CartoonSubtitle>
+
+    <HalfScreenBody>
+      Below I will show the technologies that I have used throughout my career.
+    </HalfScreenBody>
+
+    <div class="container">
+      <TechCard
+        v-for="(tech) in Tecnologies" :key="uniqid()" 
+        :tech="tech.image"
+        >{{ tech.name }}</TechCard>
+    </div>
+
+    <CustomHR/>
+
   </div>
 </template>
 
