@@ -6,7 +6,7 @@
     <RouterLink to="/">
         <div class="company">
             <div class="circle"></div>
-            <img src="../assets/Logo.png" alt="Logo image">
+            <img src="../../assets/Logo.png" alt="Logo image">
         </div>
     </RouterLink>
 </template>
