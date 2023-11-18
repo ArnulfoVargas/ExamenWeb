@@ -43,6 +43,11 @@ import AppFooter from './components/Footer/AppFooter.vue'
     margin: 0;
   }
 
+  .body{
+    margin: auto;
+    padding: 1.25rem 0;
+  }
+
   *{
     user-select: none;
     font-family: var(--main-font);

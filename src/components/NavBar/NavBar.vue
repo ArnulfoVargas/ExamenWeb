@@ -82,12 +82,12 @@
         background-color: var(--color-gray);
         display: flex;
         justify-content: space-between;
-        z-index: 1;
+        z-index: 2;
     }
 
     .routes{
         display: none;
-        z-index: 1;
+        z-index: 2;
     }
 
     .hamburguer{
@@ -96,7 +96,7 @@
         align-items: center;
         height: 100%;
         width: 5rem;
-        z-index: 1;
+        z-index: 2;
     }
 
     .hamburguer p{

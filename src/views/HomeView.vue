@@ -54,11 +54,6 @@
 </template>
 
 <style scoped>
-  .body{
-    margin: auto;
-    padding: 1.25rem 0;
-  }
-
   .container{
     width: 75%;
     display: flex;
