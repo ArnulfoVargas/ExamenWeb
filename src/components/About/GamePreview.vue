@@ -3,7 +3,7 @@
     import CartoonSubtitle from '../CartoonSubtitle.vue';
     import Slider from './Slider.vue';
     import CustomHR from '../CustomHR.vue';
-import CustomButton from './CustomButton.vue';
+    import CustomButton from './CustomButton.vue';
     
     const props = defineProps({
         data: {
