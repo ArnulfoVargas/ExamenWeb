@@ -34,6 +34,20 @@
     watch(current_data, async () => {
         await fetchData(current_data.value)
     })
+
+    const onNext = () => {
+        const id = pokeapiData.value.id;
+
+        if (id < 1017)
+            current_data.value = id + 1;
+    }
+
+    const onPrev = () => {
+        const id = pokeapiData.value.id;
+
+        if (id > 0)
+            current_data.value = id - 1;
+    }
 </script>
 
 <template>
@@ -65,8 +79,8 @@
                 />
 
             <div class="buttons-holder">
-                <button class="button">Prev</button>
-                <button class="button">Next</button>
+                <button @click="onPrev" class="button">Prev</button>
+                <button @click="onNext" class="button">Next</button>
             </div>
         </div>
     </div>
