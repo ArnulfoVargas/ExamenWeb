@@ -51,7 +51,13 @@ import AppFooter from './components/Footer/AppFooter.vue'
   }
 
   .router-view{
-    min-height: calc(100dvh - 10rem);
+    min-height: calc(100dvh - 5rem - 387px);
+  }
+
+  @media (min-width: 768px) {
+    .router-view{
+      min-height: calc(100dvh - 5rem - 304px);
+    }
   }
 
   *{
