@@ -15,6 +15,8 @@
             <textarea name="message" cols="30" rows="10" placeholder="Your message here" value="">
 
             </textarea>
+
+            <button>Send!</button>
         </div>
     </div>
 </template>
