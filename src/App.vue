@@ -6,7 +6,9 @@ import AppFooter from './components/Footer/AppFooter.vue'
 <template>
   <NavBar/>
 
-  <RouterView />
+  <div class="router-view">
+    <RouterView />
+  </div>
 
   <AppFooter/>
 </template>
@@ -46,6 +48,10 @@ import AppFooter from './components/Footer/AppFooter.vue'
   .body{
     margin: auto;
     padding: 1.25rem 0;
+  }
+
+  .router-view{
+    min-height: calc(100dvh - 10rem);
   }
 
   *{

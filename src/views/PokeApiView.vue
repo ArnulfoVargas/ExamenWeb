@@ -4,14 +4,17 @@
     import InputFieldsApi from "../components/PokeApi/InputFieldsApi.vue";
     import CartoonSubtitle from "../components/CartoonSubtitle.vue";
     import PokemonImage from "../components/PokeApi/PokemonImage.vue";
+    import uniqid from "uniqid"
 
     const endpoint = 'https://pokeapi.co/api/v2/pokemon/';
     let current_data = ref(Math.floor(Math.random() * 1017 + 1).toString())
 
-    let pokeapiData = ref({});
-    let isLoading = ref(false);
-    let error = ref(null);
-    let images = ref({})
+    const pokeapiData = ref({});
+    const isLoading = ref(false);
+    const error = ref(null);
+    const images = ref({});
+    const abilities = ref([])
+    const types = ref([])
 
     const fetchData = async(data) => {
         isLoading.value = true;
@@ -20,6 +23,8 @@
             const data = await response.json();
             pokeapiData.value = {...data};
             images.value = {...data.sprites};
+            abilities.value = [...data.abilities];
+            types.value = [...data.types];
         }catch (err){
             error.value = err;
         }finally{
@@ -78,6 +83,26 @@
                 :normal-image="images.front_default"
                 />
 
+            <div class="data-container">
+                <div>
+                    <CartoonSubtitle>Abilities</CartoonSubtitle>
+                    <p v-for="ability in abilities"
+                        :key="uniqid()"
+                    >
+                        {{ ability.ability.name }}
+                    </p>
+                </div>
+
+                <div>
+                    <CartoonSubtitle>Types</CartoonSubtitle>
+                    <p v-for="type in types"
+                        :key="uniqid()"
+                    >
+                        {{ type.type.name }}
+                    </p>
+                </div>
+            </div>
+
             <div class="buttons-holder">
                 <button @click="onPrev" class="button">Prev</button>
                 <button @click="onNext" class="button">Next</button>
@@ -122,6 +147,7 @@
         padding: 0 1.25rem;
     }
 
+    
     @media (min-width: 768px) {
         .buttons-holder{
             margin: 20px auto;
@@ -129,7 +155,7 @@
             max-width: 1000px;
         }
     }
-
+    
     .button{
         background-color: var(--color-white);
         color: var(--color-red);
@@ -142,7 +168,7 @@
         font-size: 1.5rem;
         line-height: 2rem;
         box-shadow: none;
-
+        
         width: 83.33%;
         height: 3rem;
         
@@ -151,6 +177,35 @@
         transition-timing-function: linear;
     }
 
+    .data-container{
+            width: 100%;
+            display: grid;
+            grid-template-rows: repeat(1, 1fr);
+            justify-content: center;
+            margin-top: 1rem;
+        } 
+
+    @media (min-width: 768px) {
+        .data-container{
+        grid-template-rows: auto;
+        grid-template-columns: repeat(2, 350px);
+    }
+    }
+    .data-container div{
+        height: fit-content;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        margin: 0;
+        margin-bottom: .5rem;
+    }
+
+    .data-container div > p {
+        text-transform: capitalize;
+        margin: 0.1rem;
+    }
+    
     .button:hover{
         color: var(--color-white);
         background-color: var(--color-red);
