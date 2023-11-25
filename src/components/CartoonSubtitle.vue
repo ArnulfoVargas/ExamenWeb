@@ -10,7 +10,7 @@
 
 <style scoped>
     div{
-        margin: auto;
+        margin:1rem auto;
         width: fit-content;
         max-width: fit-content;
         padding: 0 .25rem ;

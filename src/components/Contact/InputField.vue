@@ -2,7 +2,11 @@
     defineProps({
         label: String,
         placeholder: String,
+        inputType:String,
+        data:String,
     })
+
+    defineEmits(["update:data"])
 </script>
 
 <template>
@@ -11,7 +15,7 @@
             <p>{{ label }}</p>
         </div>
 
-        <input type="text" :placeholder="placeholder">
+        <input type="text" :placeholder="placeholder" :value="data" @input="$emit('update:data', $event.target.value)" required>
     </div>
 </template>
 
