@@ -1,8 +1,11 @@
 <script setup>
-    import CartoonSubtitle from '../components/CartoonSubtitle.vue';
-    import InputField from '../components/Contact/InputField.vue';
+    import { supabase } from '../lib/supabaseClient';
+    import { reactive, ref } from 'vue'
 
-    import {reactive} from 'vue'
+    import CartoonSubtitle from '../components/CartoonSubtitle.vue';
+    import ErrorMessage from '../components/Contact/ErrorMessage.vue';
+    import InputField from '../components/Contact/InputField.vue';
+    import DataSendedMessage from '../components/Contact/DataSendedMessage.vue';
 
     const baseObjetct = {
         name: "",
@@ -10,19 +13,100 @@
         message:""
     }
 
+    const nameErr = ref("");
+    let nameTimeout;
+    const emailErr = ref("");
+    let emailTimeout;
+
+    const emailSend = ref(false);
+    let emailSendTimeout;
+
     const userData = reactive({...baseObjetct})
 
-    const onSubmit = (e) => {
-        const data = {...userData};
+    const validateName = (formData) =>{
+        if (formData.name === ""){
+            nameErr.value = "Empty Name not Valid"
+            if (nameTimeout){
+                clearTimeout(nameTimeout)
+            }
+
+            nameTimeout = setTimeout(() => {
+                nameErr.value = ""
+            }, 2000)
+
+            return false
+        }
+
+        return true;
+    }
+
+    const validateEmail = (formData) => {
+        if (formData.email === "" ){
+            emailErr.value = "Empty Email not valid"
+        }
+        else{
+            let regex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+            if (!regex.test(formData.email)){
+                emailErr.value = "Type a valid Email"
+            }
+        }
+        
+        if(emailErr.value != ""){
+            if (emailTimeout){
+                clearTimeout(emailTimeout)
+            }
+
+            emailTimeout = setTimeout(() => {
+                emailErr.value = ""
+            }, 2000)
+
+            return false
+        }
+        
+        return true;
+    }
+
+    const onEmailSend = () => {
+        emailSend.value = true;
+        
+        if (emailTimeout){
+                clearTimeout(emailTimeout)
+            }
+
+            emailTimeout = setTimeout(() => {
+                emailSend.value = false;
+            }, 2000)
+    }
+
+    const onSubmit = async() => {
+        let canSend = true;
+
+        const formData = {...userData};
+        formData.name = formData.name.trim();
+        formData.email = formData.email.trim();
+        formData.message = formData.message.trim();
+
+        canSend = validateName(formData);
+        canSend = validateEmail(formData);
+
+        if (!canSend) return
+        
+        const { data, error } = await supabase
+            .from('users')
+            .insert([
+                    { name: `${formData.name}`, email:`${formData.email}`, message: `${formData.message}` },
+                ])
+            .select()
+
+        if (error) return;
 
         Object.assign(userData, baseObjetct);
-
-        console.log(data);
+        onEmailSend();
     }
 </script>
 
 <template>
-    <form>
+    <div>
         <CartoonSubtitle>Contact Me!</CartoonSubtitle>
 
         <div class="form-container">
@@ -33,6 +117,9 @@
                 name="name" 
                 v-model:data="userData.name"
                 />
+            
+            <ErrorMessage :error="nameErr != ''">{{ nameErr }}</ErrorMessage>
+
             <InputField 
                 :label="'Email'" 
                 :placeholder="'Your email'" 
@@ -41,13 +128,23 @@
                 v-model:data="userData.email"
                 />
 
-            <textarea name="message" cols="30" rows="10" placeholder="Your message here" v-model="userData.message">
+            <ErrorMessage :error="emailErr != ''">{{ emailErr }}</ErrorMessage>
+
+            <textarea 
+                name="message" 
+                cols="30" rows="10" 
+                placeholder="Your message here" 
+                v-model="userData.message"
+                maxlength="255"
+                >
 
             </textarea>
 
-            <button @Click="onSubmit">Send!</button>
+            <DataSendedMessage :sended="emailSend"/>
+
+            <button @click="onSubmit">Send!</button>
         </div>
-    </form>
+    </div>
 </template>
 
 <style scoped>

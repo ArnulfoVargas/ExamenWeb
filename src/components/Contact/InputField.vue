@@ -7,7 +7,7 @@
         pattern: String,
     })
 
-    defineEmits(["update:data"])
+    const emits = defineEmits(["update:data"])
 </script>
 
 <template>
@@ -20,7 +20,8 @@
             :type="inputType" 
             :placeholder="placeholder" 
             :value="data" 
-            @input="$emit('update:data', $event.target.value)" 
+            @input="$emit('update:data', $event.target.value)"
+            maxlength="50"
             required
             >
     </div>
