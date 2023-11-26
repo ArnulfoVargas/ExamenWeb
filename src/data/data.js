@@ -50,69 +50,90 @@ export const Pages = [
 export const Languages = [
     {
         name: "C#",
-        image: "/Languages/csharp.png"
+        image: "/Languages/csharp.png",
+        docs: "https://learn.microsoft.com/en-us/dotnet/csharp/"
     },
     {
         name: "Python",
-        image: "/Languages/python.png"
+        image: "/Languages/python.png",
+        docs: "https://docs.python.org/3/"
     },
     {
         name: "Java Script",
-        image: "/Languages/js.png"
+        image: "/Languages/js.png",
+        docs: "https://developer.mozilla.org/es/docs/Web/JavaScript"
     },
     {
         name: "Type Script",
-        image: "/Languages/ts.png"
+        image: "/Languages/ts.png",
+        docs: "https://www.typescriptlang.org/docs/"
     },
     {
-        name: "Dart",
-        image: "/Languages/dart.png"
+        name: "Rust",
+        image: "/Languages/rust.png",
+        docs: "https://www.rust-lang.org/learn",
     },
     {
         name: "C++",
-        image: "/Languages/CPP.png"
+        image: "/Languages/CPP.png",
+        docs: "https://devdocs.io/cpp/"
     },
     {
         name: "Java",
-        image: "/Languages/java.png"
+        image: "/Languages/java.png",
+        docs: "https://docs.oracle.com/en/java/"
+    },
+    {
+        name: "Dart",
+        image: "/Languages/dart.png",
+        docs: "https://dart.dev/guides"
     },
 ]
 
 export const Tecnologies = [
     {
         name: "Unity",
-        image: "/Tech/unity.png"
+        image: "/Tech/unity.png",
+        docs: "https://docs.unity.com/"
     },
     {
         name: "Unreal Engine",
-        image: "/Tech/unreal.png"
+        image: "/Tech/unreal.png",
+        docs: "https://docs.unrealengine.com/5.3/en-US/"
     },
     {
         name: "Flutter",
-        image: "/Tech/flutter.png"
+        image: "/Tech/flutter.png",
+        docs: "https://docs.flutter.dev/"
     },
     {
         name: "VueJS",
-        image: "/Tech/vue.png"
+        image: "/Tech/vue.png",
+        docs: "https://vuejs.org/guide/introduction.html"
     },
     {
         name: "React",
-        image: "/Tech/react.png"
+        image: "/Tech/react.png",
+        docs: "https://react.dev/learn"
     },
     {
         name: "Docker",
-        image: "/Tech/docker.png"
+        image: "/Tech/docker.png",
+        docs: "https://docs.docker.com/"
     },
     {
         name: "ThreeJS",
-        image: "/Tech/threejs.png"
+        image: "/Tech/threejs.png",
+        docs: "https://threejs.org/docs/#manual/en/introduction/Installation"
     },
     {
         name: "Firebase",
-        image: "/Tech/firebase.png"
+        image: "/Tech/firebase.png",
+        docs: "https://firebase.google.com/docs?hl=es-419"
     },
     {
         name: "Godot",
-        image: "/Tech/godot.png"
+        image: "/Tech/godot.png",
+        docs: "https://docs.godotengine.org/en/stable/"
     },
 ]

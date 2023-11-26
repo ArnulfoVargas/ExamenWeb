@@ -13,31 +13,41 @@
     const userData = reactive({...baseObjetct})
 
     const onSubmit = (e) => {
-        e.preventDefault();
-        
         const data = {...userData};
 
         Object.assign(userData, baseObjetct);
+
+        console.log(data);
     }
 </script>
 
 <template>
-    <div>
+    <form>
         <CartoonSubtitle>Contact Me!</CartoonSubtitle>
 
         <div class="form-container">
-            <InputField :label="'Name'" :placeholder="'Your name'" name="name" :inputType="'text'" v-model:data="userData.name"/>
-            <InputField :label="'Email'" :placeholder="'Your email'" name="email" :inputType="'email'" v-model:data="userData.email"/>
+            <InputField 
+                :label="'Name'" 
+                :placeholder="'Your name'" 
+                :inputType="'text'" 
+                name="name" 
+                v-model:data="userData.name"
+                />
+            <InputField 
+                :label="'Email'" 
+                :placeholder="'Your email'" 
+                :inputType="'email'" 
+                name="email" 
+                v-model:data="userData.email"
+                />
 
             <textarea name="message" cols="30" rows="10" placeholder="Your message here" v-model="userData.message">
 
             </textarea>
 
-            <button @click="onSubmit">Send!</button>
+            <button @Click="onSubmit">Send!</button>
         </div>
-
-        <p>{{ userData }}</p>
-    </div>
+    </form>
 </template>
 
 <style scoped>

@@ -4,6 +4,7 @@
         placeholder: String,
         inputType:String,
         data:String,
+        pattern: String,
     })
 
     defineEmits(["update:data"])
@@ -15,7 +16,13 @@
             <p>{{ label }}</p>
         </div>
 
-        <input type="text" :placeholder="placeholder" :value="data" @input="$emit('update:data', $event.target.value)" required>
+        <input 
+            :type="inputType" 
+            :placeholder="placeholder" 
+            :value="data" 
+            @input="$emit('update:data', $event.target.value)" 
+            required
+            >
     </div>
 </template>
 

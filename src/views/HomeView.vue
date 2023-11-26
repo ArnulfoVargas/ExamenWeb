@@ -30,6 +30,7 @@
       <TechCard
         v-for="(lang) in Languages" :key="uniqid()" 
         :tech="lang.image"
+        :docs="lang.docs"
         >{{ lang.name }}</TechCard>
     </div>
     
