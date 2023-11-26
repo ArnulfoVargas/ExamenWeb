@@ -1,6 +1,6 @@
 <script setup>
     import { supabase } from '../lib/supabaseClient';
-    import { reactive, ref } from 'vue'
+    import { reactive, ref, onMounted } from 'vue'
 
     import CartoonSubtitle from '../components/CartoonSubtitle.vue';
     import ErrorMessage from '../components/Contact/ErrorMessage.vue';
@@ -17,11 +17,17 @@
     let nameTimeout;
     const emailErr = ref("");
     let emailTimeout;
+    const sendErr = ref("");
+    let sendErrTimeout;
 
     const emailSend = ref(false);
     let emailSendTimeout;
 
     const userData = reactive({...baseObjetct})
+
+    onMounted(()=>{
+        emailjs.init('ovbHGIs4yA_pFc8Bz');
+    })
 
     const validateName = (formData) =>{
         if (formData.name === ""){
@@ -69,12 +75,24 @@
     const onEmailSend = () => {
         emailSend.value = true;
         
-        if (emailTimeout){
-                clearTimeout(emailTimeout)
+        if (emailSendTimeout){
+                clearTimeout(emailSendTimeout)
             }
 
-            emailTimeout = setTimeout(() => {
+            emailSendTimeout = setTimeout(() => {
                 emailSend.value = false;
+            }, 2000)
+    }
+
+    const handleError = () => {
+        sendErr.value = "err";
+        
+        if (sendErrTimeout){
+                clearTimeout(sendErrTimeout)
+            }
+
+            sendErrTimeout = setTimeout(() => {
+                sendErr.value = "";
             }, 2000)
     }
 
@@ -98,7 +116,14 @@
                 ])
             .select()
 
-        if (error) return;
+        if (error) {
+            handleError()
+            return
+        }
+
+        const service_id = "service_w0pzwiu"
+        const template_id = "template_tyx1pvq"
+        await emailjs.send(service_id, template_id, {to: formData.email});
 
         Object.assign(userData, baseObjetct);
         onEmailSend();

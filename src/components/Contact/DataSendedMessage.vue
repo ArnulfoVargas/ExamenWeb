@@ -1,6 +1,7 @@
 <script setup>
     defineProps({
         sended: Boolean,
+        error: String,
     })
 </script>
 
@@ -15,6 +16,10 @@
         display: flex;
         width: 100%;
         align-items: center;
+    }
+
+    .green{
+        background-color: rgb(19, 167, 19);
     }
 
     .showSend{
