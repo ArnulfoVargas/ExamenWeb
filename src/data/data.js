@@ -59,9 +59,19 @@ export const Languages = [
         docs: "https://docs.python.org/3/"
     },
     {
+        name: "Go",
+        image: "/Languages/go.png",
+        docs: "https://go.dev/doc/"
+    },
+    {
         name: "Java Script",
         image: "/Languages/js.png",
         docs: "https://developer.mozilla.org/es/docs/Web/JavaScript"
+    },
+    {
+        name: "Rust",
+        image: "/Languages/rust.png",
+        docs: "https://www.rust-lang.org/learn",
     },
     {
         name: "Type Script",
@@ -69,9 +79,9 @@ export const Languages = [
         docs: "https://www.typescriptlang.org/docs/"
     },
     {
-        name: "Rust",
-        image: "/Languages/rust.png",
-        docs: "https://www.rust-lang.org/learn",
+        name: "Dart",
+        image: "/Languages/dart.png",
+        docs: "https://dart.dev/guides"
     },
     {
         name: "C++",
@@ -82,11 +92,6 @@ export const Languages = [
         name: "Java",
         image: "/Languages/java.png",
         docs: "https://docs.oracle.com/en/java/"
-    },
-    {
-        name: "Dart",
-        image: "/Languages/dart.png",
-        docs: "https://dart.dev/guides"
     },
 ]
 
